@@ -9,7 +9,7 @@ async def on_startup(dp):
     from utils.db_api.db_gino import on_startup
     await on_startup(dp)
     # await db.gino.drop_all()
-    # await db.gino.create_all()
+    await db.gino.create_all()
 
     from utils.notify_admins import on_startup_notify
     await on_startup_notify(dp)

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+
+  db:
+    container_name: database
+    image: postgres
+    restart: always
+#    command: --init-file /data/application/init.sql
+#    volumes:
+#      - ./init.sql:/data/application/init.sql
+    ports:
+      - 8081:5432
+    env_file:
+      - ".env"
+#    network_mode: "host"
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+#    network_mode: "host"
+
+  tgbot:
+    container_name: bot
+    build: .
+    volumes:
+      - .:/app
+    command: python bot.py
+    restart: always
+#    environment:
+#      - API_TOKEN=5596560349:AAFZcqA6TXjx6bHDEYplgXnDTXJuYdZfp3w
+#      - ip=localhost
+#      - DATABASE=gino
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=nuOSv4V!LurN
+    network_mode: "host"
+
+    env_file:
+      - ".env"

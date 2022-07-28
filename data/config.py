@@ -11,8 +11,8 @@ ADMINS = [
 ]
 
 ip = str(os.getenv('ip'))
-PGUSER = str(os.getenv('PGUSER'))
-PGPASSWORD = str(os.getenv('PGPASSWORD'))
+POSTGRES_USER = str(os.getenv('POSTGRES_USER'))
+POSTGRES_PASSWORD = str(os.getenv('POSTGRES_PASSWORD'))
 DATABASE = str(os.getenv('DATABASE'))
 
-POSTGRES_URL = f'postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}'
+POSTGRES_URL = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{ip}/{DATABASE}'

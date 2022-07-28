@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 from gino import Gino
 import sqlalchemy as sa
@@ -26,15 +27,6 @@ class BaseModel(db.Model):
         return f"<{model} {values_str}>"
 
 
-# class TestModel(BaseModel):
-#     __tablename__ = 'testModel'
-#
-#     id = Column(BigInteger, primary_key=True)
-#     name = Column(String(50))
-#
-#
-# print(TestModel())
-
 class TimedBaseModel(BaseModel):
     __abstract__ = True
 
@@ -47,5 +39,6 @@ class TimedBaseModel(BaseModel):
 
 
 async def on_startup(dispatcher: Dispatcher):
+    await asyncio.sleep(2)
     print('Установка связи с Postgresql')
     await db.set_bind(config.POSTGRES_URL)
