@@ -2,8 +2,8 @@ from tronpy import exceptions
 from tronpy.keys import PrivateKey
 
 some_private_key = '6bd359d7634f8cbc07f80920b93f34515b32be149233b6ba03e116d73ff0e0ce'
-password = 'nuOSv4V!LurN'
-password2 = 'nuOSv4V!LurM'
+password = ''
+password2 = ''
 
 # def crypto_xor(message: str, secret: str) -> str:
 #     new_chars = list()
