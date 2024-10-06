@@ -19,7 +19,7 @@ class HaveInDb(BoundFilter):
     async def check(self, message: types.Message):
         try:
             user = await commands.select_user(message.from_user.id)
-            if user.status is not 'active':
+            if user.status != 'active':
                 # await message.answer(f'Вы ещё не зарегистрированы. \nДля регистрации нажмите /start')
                 return self.consist
             else:
