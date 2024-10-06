@@ -10,9 +10,9 @@ ADMINS = [
     6405640
 ]
 
-ip = str(os.getenv('ip'))
+POSTGRES_HOST = str(os.getenv('POSTGRES_HOST'))
 POSTGRES_USER = str(os.getenv('POSTGRES_USER'))
 POSTGRES_PASSWORD = str(os.getenv('POSTGRES_PASSWORD'))
-DATABASE = str(os.getenv('DATABASE'))
+POSTGRES_DB = str(os.getenv('POSTGRES_DB'))
 
-POSTGRES_URL = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{ip}/{DATABASE}'
+POSTGRES_URL = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}'

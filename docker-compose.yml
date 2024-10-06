@@ -1,42 +1,23 @@
-version: '3.8'
+version: '1'
 
 services:
+  redis:
+    container_name: TWB_redis
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
 
   db:
-    container_name: database
-    image: postgres
-    restart: always
-#    command: --init-file /data/application/init.sql
-#    volumes:
-#      - ./init.sql:/data/application/init.sql
-    ports:
-      - 8081:5432
-    env_file:
-      - ".env"
-#    network_mode: "host"
-
-  adminer:
-    container_name: adminer
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-#    network_mode: "host"
-
-  tgbot:
-    container_name: bot
-    build: .
+    container_name: TWB_db
+    image: "postgres:15.2"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
     volumes:
-      - .:/app
-    command: python bot.py
-    restart: always
-#    environment:
-#      - API_TOKEN=5596560349:AAFZcqA6TXjx6bHDEYplgXnDTXJuYdZfp3w
-#      - ip=localhost
-#      - DATABASE=gino
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=nuOSv4V!LurN
-    network_mode: "host"
+      - postgres15_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
-    env_file:
-      - ".env"
+volumes:
+  postgres15_data: {}
